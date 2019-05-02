@@ -51,5 +51,24 @@ namespace HangMan.Tests
       Assert.AreEqual(testChar, blanksArray[3]);
     }
 
+    // [TestMethod]
+    // public void UpdateBlanks_CompareUserCharToGameWordAndUpdateBlanks_CharArray()
+    // {
+    //
+    // }
+
+    //Test Worked before we switched to random word generation
+    // [TestMethod]
+    // public void DoesContainChar_CheckGameWordArrayForUserChar_True()
+    // {
+    //   Game newGame = new Game();
+    //   // newGame.GameWord = {'b', 'c', 'a'};
+    //   char testChar = 'a';
+    //   bool testBool = newGame.DoesContainChar(testChar);
+    //
+    //   Assert.AreEqual(true, testBool);
+    // }
+
+
   }
 }

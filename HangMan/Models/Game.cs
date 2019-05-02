@@ -14,7 +14,7 @@ namespace HangMan.Models
     public char[] GameWord{ get => _gameWord; set => _gameWord = value; }
     public char[] WordsBlank{ get => _wordBlank; set => _wordBlank = value; }
     public List<char> LettersGuessed{ get; set; }
-    publi int NumberOfGuesses{ get; set; }
+    public int NumberOfGuesses{ get; set; }
 
     public Game()
     {
@@ -45,6 +45,18 @@ namespace HangMan.Models
          _wordBlank[i] = '_';
        }
        return _wordBlank;
+     }
+
+     public bool DoesContainChar(char userChar)
+     {
+       for (int i = 0; i < _gameWord.Length; i++)
+       {
+         if(_gameWord[i] == userChar)
+         {
+           return true;
+         }
+       }
+       return false;
      }
   }
 }
