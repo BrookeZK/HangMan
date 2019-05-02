@@ -10,9 +10,11 @@ namespace HangMan.Models
     private char[] _wordBlank;
     private List<char> _lettersGuessed = new List<char> {};
     private int _numberOfGuesses = 0;
+    private static List<Game> _instances = new List<Game> {};
+    private int _id;
 
     public char[] GameWord{ get => _gameWord; set => _gameWord = value; }
-    public char[] WordsBlank{ get => _wordBlank; set => _wordBlank = value; }
+    public char[] WordBlank{ get => _wordBlank; set => _wordBlank = value; }
     public List<char> LettersGuessed{ get; set; }
     public int NumberOfGuesses{ get; set; }
 
@@ -20,6 +22,9 @@ namespace HangMan.Models
     {
       this.MakeCharArray();
       this.BuildWordBlanks();
+      _instances.Add(this);
+      _id = _instances.Count;
+
     }
 
     public string GetGameWord()
@@ -31,80 +36,105 @@ namespace HangMan.Models
       return _wordPool[rand.Next(_wordPool.Count-1)];
     }
 
-     public void MakeCharArray()
-     {
-       string gameWordString = this.GetGameWord();
-       _gameWord = gameWordString.ToCharArray();
-     }
+    public void MakeCharArray()
+    {
+      string gameWordString = this.GetGameWord();
+      _gameWord = gameWordString.ToCharArray();
+    }
 
-     public char[] BuildWordBlanks()
-     {
-       _wordBlank = _gameWord;
-       for(int i = 0; i < _wordBlank.Length; i++)
-       {
-         _wordBlank[i] = '_';
-       }
-       return _wordBlank;
-     }
+    public char[] BuildWordBlanks()
+    {
+      _wordBlank = _gameWord;
+      for(int i = 0; i < _wordBlank.Length; i++)
+      {
+        _wordBlank[i] = '_';
+      }
+      return _wordBlank;
+    }
 
-     public bool DoesContainChar(char userChar)
-     {
-       for (int i = 0; i < _gameWord.Length; i++)
-       {
-         if(_gameWord[i] == userChar)
-         {
-           return true;
-         }
-       }
-       return false;
-     }
+//original method for DoesContainChar returning a bool:
+    // public bool DoesContainChar(char userChar)
+    // {
+    //   for (int i = 0; i < _gameWord.Length; i++)
+    //   {
+    //     if(_gameWord[i] == userChar)
+    //     {
+    //       return true;
+    //     }
+    //   }
+    //   return false;
+    // }
 
-     public char[] UpdateBlanks(char userChar)
-     {
-       for(int i = 0; i < _gameWord.Length; i++)
-       {
-         if(_gameWord[i] == userChar)
-         {
-           _wordBlank[i] = userChar;
-         }
-       }
-       return _wordBlank;
-     }
+    public void DoesContainChar(char userChar)
+    {
+      for (int i = 0; i < _gameWord.Length; i++)
+      {
+        if(_gameWord[i] == userChar)
+        {
+          CheckForWin();
+          UpdateLettersGuessed(userChar);
+          UpdateBlanks(userChar);
+        }
+        else
+        {
+          UpdateLettersGuessed(userChar);
+          CheckForLose();
+          UpdateNumberOfGuesses();
+        }
+      }
+    }
 
-     public List<char> UpdateLettersGuessed(char userChar)
-     {
-       _lettersGuessed.Add(userChar);
-       return _lettersGuessed;
-     }
+    public char[] UpdateBlanks(char userChar)
+    {
+      for(int i = 0; i < _gameWord.Length; i++)
+      {
+        if(_gameWord[i] == userChar)
+        {
+          _wordBlank[i] = userChar;
+        }
+      }
+      return _wordBlank;
+    }
 
-     public int UpdateNumberOfGuesses()
-     {
-       _numberOfGuesses = this.NumberOfGuesses+=1;
-       // return _numberOfGuesses+=1;
-       return _numberOfGuesses ;
-     }
+    public List<char> UpdateLettersGuessed(char userChar)
+    {
+      _lettersGuessed.Add(userChar);
+      return _lettersGuessed;
+    }
 
-     public bool CheckForWin()
-     {
-       bool doesMatch = true;
-       for (int i = 0; i < _wordBlank.Length; i++)
-       {
-         if (_wordBlank[i] != _gameWord[i])
-         {
-           doesMatch = false;
-         }
+    public int UpdateNumberOfGuesses()
+    {
+      _numberOfGuesses = this.NumberOfGuesses+=1;
+      // return _numberOfGuesses+=1;
+      return _numberOfGuesses ;
+    }
 
-       }
-       return doesMatch;
-     }
+    public bool CheckForWin()
+    {
+      bool doesMatch = true;
+      for (int i = 0; i < _wordBlank.Length; i++)
+      {
+        if (_wordBlank[i] != _gameWord[i])
+        {
+          doesMatch = false;
+        }
 
-     public bool CheckForLose(int testGuesses)
-     {
-       if(testGuesses > 6)
-       {
-         return true;
-       }
-    return false;
+      }
+      return doesMatch;
+    }
+
+    public bool CheckForLose()
+    {
+      if(_numberOfGuesses > 6)
+      {
+        return true;
+      }
+      return false;
+    }
+
+    public static Game FindGame()
+    {
+      return _instances[0];
     }
 
   }

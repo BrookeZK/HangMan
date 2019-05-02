@@ -104,7 +104,7 @@ namespace HangMan.Tests
     //   Assert.AreEqual(userChar, result[1]);
     // }
 
-    //Test Worked before we switched to random word generation
+//Test Worked before we switched to random word generation
     // [TestMethod]
     // public void DoesContainChar_CheckGameWordArrayForUserChar_True()
     // {

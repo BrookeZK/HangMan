@@ -10,6 +10,13 @@ body {
   color: pink;
 }
 
+#playGame {
+  text-align: center;
+  align-items: center;
+  font-family: 'ZCOOL KuaiLe', cursive;
+  color: pink;
+}
+
 h1  {
   font-family: 'ZCOOL KuaiLe', cursive;
   font-size: 100px;

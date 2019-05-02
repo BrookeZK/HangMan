@@ -1,0 +1,36 @@
+@{
+  Layout = "_Layout";
+}
+
+<div id="playGame">
+  <h1>Hang Man</h1>
+
+  <h2>Number of WRONG guesses - you only get 6!:</h2>
+  <h2>@Model.NumberOfGuesses</h2>
+
+  <h2>Used Letters: </h2>
+
+
+  @* <ul>
+    @if(@Model.LettersGuessed.Count > 0)
+    {
+      @foreach (Char letter in Model.LettersGuessed)
+      {
+        <li>@letter</li>
+      }
+    }
+      else
+      {
+        <h2>No letters Guessed</h2>
+      }
+  </ul> *@
+
+  <h1>@Model.WordBlank</h1>
+
+  <form action="/game" method="post">
+    <label for="userLetter">Please Enter A Letter: </label>
+    <input id="userLetter" name="userLetter" type="text">
+    <button type="submit">Add</button>
+  </form>
+
+</div>
