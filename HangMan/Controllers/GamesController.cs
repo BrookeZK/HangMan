@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using ToDoList.Models;
+using HangMan.Models;
 using System.Collections.Generic;
 
 namespace HangMan.Controllers
