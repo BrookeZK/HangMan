@@ -50,11 +50,17 @@ namespace HangMan.Tests
       char testChar = '_';
       Assert.AreEqual(testChar, blanksArray[3]);
     }
-
+//Test works with static input
     // [TestMethod]
     // public void UpdateBlanks_CompareUserCharToGameWordAndUpdateBlanks_CharArray()
     // {
+    //   Game newGame = new Game();
+    //   char userChar = 'a';
+    //   char[] testArray = {'h', 'a', 'p', 'p', 'y'};
+    //   char[] testBlanks = {'_', 'a', '_', '_', '_'};
+    //   char[] result = newGame.UpdateBlanks(userChar, testArray);
     //
+    //   Assert.AreEqual(userChar, result[1]);
     // }
 
     //Test Worked before we switched to random word generation

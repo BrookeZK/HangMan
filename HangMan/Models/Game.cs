@@ -58,5 +58,17 @@ namespace HangMan.Models
        }
        return false;
      }
+
+     public char[] UpdateBlanks(char userChar)
+     {
+       for(int i = 0; i < _gameWord.Length; i++)
+       {
+         if(_gameWord[i] == userChar)
+         {
+           _wordBlank[i] = userChar;
+         }
+       }
+       return _wordBlank;
+     }
   }
 }
