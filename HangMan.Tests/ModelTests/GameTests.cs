@@ -50,6 +50,47 @@ namespace HangMan.Tests
       char testChar = '_';
       Assert.AreEqual(testChar, blanksArray[3]);
     }
+
+    [TestMethod]
+    public void UpdateLettersGuessed_AddCharToListOfGuessedLetters_List()
+    {
+      Game newGame = new Game();
+      char testChar = 'z';
+      List<char> compareList = new List<char> { };
+      compareList.Add(testChar);
+      List<char> result = newGame.UpdateLettersGuessed(testChar);
+      CollectionAssert.AreEqual(result, compareList);
+    }
+
+    [TestMethod]
+    public void UpdateNumberOfGuesses_IncrementTheNumberOfGuessesProperty_int()
+    {
+      Game newGame = new Game();
+      int result = newGame.UpdateNumberOfGuesses();
+      Assert.AreEqual(1, result);
+    }
+
+    [TestMethod]
+    public void CheckForLose_CheckIfMaxTurnsReached_True()
+    {
+      Game newGame = new Game();
+      int testGuesses = 7;
+      bool result = newGame.CheckForLose(testGuesses);
+
+      Assert.AreEqual(true, result);
+    }
+//Test passes all static inputs
+    // [TestMethod]
+    // public void
+    // CheckForWin_CheckIfUserWinsGame_true()
+    // {
+    //   Game newGame = new Game();
+    //   char[] testGameWord = {'h', 'a', 'p', 'p', 'y'};
+    //   char[] testBlanks = {'h', 'a', 'p', 'p', 'y'};
+    //   bool result = newGame.CheckForWin(testGameWord, testBlanks);
+    //   Assert.AreEqual(true, result);
+    // }
+
 //Test works with static input
     // [TestMethod]
     // public void UpdateBlanks_CompareUserCharToGameWordAndUpdateBlanks_CharArray()

@@ -70,5 +70,42 @@ namespace HangMan.Models
        }
        return _wordBlank;
      }
+
+     public List<char> UpdateLettersGuessed(char userChar)
+     {
+       _lettersGuessed.Add(userChar);
+       return _lettersGuessed;
+     }
+
+     public int UpdateNumberOfGuesses()
+     {
+       _numberOfGuesses = this.NumberOfGuesses+=1;
+       // return _numberOfGuesses+=1;
+       return _numberOfGuesses ;
+     }
+
+     public bool CheckForWin()
+     {
+       bool doesMatch = true;
+       for (int i = 0; i < _wordBlank.Length; i++)
+       {
+         if (_wordBlank[i] != _gameWord[i])
+         {
+           doesMatch = false;
+         }
+
+       }
+       return doesMatch;
+     }
+
+     public bool CheckForLose(int testGuesses)
+     {
+       if(testGuesses > 6)
+       {
+         return true;
+       }
+    return false;
+    }
+
   }
 }
