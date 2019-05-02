@@ -11,10 +11,10 @@
   <h2>Used Letters: </h2>
 
 
-  @* <ul>
+  <ul>
     @if(@Model.LettersGuessed.Count > 0)
     {
-      @foreach (Char letter in Model.LettersGuessed)
+      @foreach (char letter in Model.LettersGuessed)
       {
         <li>@letter</li>
       }
@@ -23,9 +23,14 @@
       {
         <h2>No letters Guessed</h2>
       }
-  </ul> *@
+  </ul>
 
-  <h1>@Model.WordBlank</h1>
+      @foreach (char letter in Model.WordBlank)
+      {
+        <p>@letter</p>
+      }
+
+  @* <h1>@Model.WordBlank</h1> *@
 
   <form action="/game" method="post">
     <label for="userLetter">Please Enter A Letter: </label>

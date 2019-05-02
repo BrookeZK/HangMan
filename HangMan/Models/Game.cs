@@ -15,7 +15,7 @@ namespace HangMan.Models
 
     public char[] GameWord{ get => _gameWord; set => _gameWord = value; }
     public char[] WordBlank{ get => _wordBlank; set => _wordBlank = value; }
-    public List<char> LettersGuessed{ get; set; }
+    public List<char> LettersGuessed{ get => _lettersGuessed; set =>  _lettersGuessed = value;}
     public int NumberOfGuesses{ get; set; }
 
     public Game()
